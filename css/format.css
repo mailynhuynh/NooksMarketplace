@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+* {
+	box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
+}
 head {
 	text-align: center;
 }
@@ -65,18 +70,20 @@ a.button {
 
 #market {
 	height: 70%;
-	width:100%;
+	width: 100%;
 	position: absolute;
 }
 
 #buying {
-	width:50%;
-	float: left;
+	width: calc(50% - 10px);
+	margin-left: 10px;
+	margin-top: 10px;
 }
 
 #selling {
-	width:150%;
-	float: right;
+	width: calc(50% - 10px);
+	left: 50%;
+	margin-top: 10px;
 }
 
 #buying, #selling {
@@ -86,9 +93,8 @@ a.button {
 #display {
 	border: solid 2px white;
 	position: absolute;
-	width: 50%;
-	text-align: center;
-	height: 600%;
+	width: 100%;
+	height: 400px;
 }
 
 input.user {
