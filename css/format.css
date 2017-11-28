@@ -90,7 +90,7 @@ a.button {
 	position: absolute;
 }
 
-#display {
+.display {
 	border: solid 2px white;
 	position: absolute;
 	width: 100%;

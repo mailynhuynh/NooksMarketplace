@@ -7,45 +7,50 @@
 		// get URL parameter to get the name of the item we're trading.
 		var url_string = window.location.href;
 		var url = new URL(url_string);
-		var c = url.searchParams.get("type");
+		var niceType = url.searchParams.get("type");
+		var originalType = niceType;
 		// replacing underscore with spaces
 		// and also capitalize each beginning letter of a word
 		function formatNicely(str) {
 			str = str.replace(/_/, " ");
 	    	return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 		}
-		c = formatNicely(c);
-		document.getElementById("pageTitle").innerHTML = c;
+		niceType = formatNicely(niceType);
+		document.getElementById("pageTitle").innerHTML = niceType;
 	</script>
-	<link href = "css/format.css" rel = "stylesheet"  type = "text/css" />
+	<script type="text/javascript" src="js/functions.js"></script>
+	<link href="css/format.css" rel="stylesheet"  type="text/css" />
 </head>
 <body>
-	<div id = "market">
-		<div id = "buying">
-			<h2>buying</h2>
-			
-			<div id = "display"></div>
+	<div id="market">
+		<div id="buying">
+			<h2>Buying</h2>
+			<div class="display"><table style="width:100%;" id="displayBuying"><tr><td>ID</td><td>Amount</td><td>Price</td></tr></table></div>
 		</div>
-		<div id = "selling">
-			<h2>selling</h2>
-
-			<div id = "display"></div>
+		<div id="selling">
+			<h2>Selling</h2>
+			<div class="display"><table style="width:100%;" id="displaySelling"><tr><td>ID</td><td>Amount</td><td>Price</td></tr></table></div>
 		</div>
 	</div>
 
 	<div id = "form">
 		<form action="action_page.php" method="post">
+		<input type="hidden" name="type" id="formType" value="">
 	  	ID:
-	 	<input type="text" class= "user" name="ID">
+	 	<input type="text" class="user" name="id">
 	  	Quantity:
-	  	<input type="text" class = "user" name="quantity">
+	  	<input type="text" class="user" name="quantity">
 	  	Price:
-	  	<input type= "text" class = "user" name = "price">
-	  	<input type="radio" name="type" value="buy"> Buy
-	 	<input type="radio" name="type" value="sell"> Sell
+	  	<input type="text" class="user" name="price">
+	  	<input type="radio" name="marketType" value="buy"> Buy
+	 	<input type="radio" name="marketType" value="sell"> Sell
 	    <input type="submit" value="Submit">
 	  	</form>
 	</div>
+	<script type="text/javascript">
+		// fill out the submit form
+		document.getElementById("formType").value = originalType;
+	</script>
 </body>
 <footer>
 	Copyright © 2017
