@@ -1,5 +1,5 @@
 @charset "UTF-8";
-<style>
+
 head {
 	text-align: center;
 }
@@ -16,31 +16,31 @@ body {
 }
 
 #fruits {
-   position: absolute;
-   width:100%;
-   height:85%;
-   bottom: 1px;
+	position: absolute;
+	width:100%;
+	height:85%;
+	bottom: 1px;
 }
 
 #ocean {
-   position: absolute;
-   width:100%;
-   height:73%;
-   bottom: 1px;
+	position: absolute;
+	width:100%;
+	height:73%;
+	bottom: 1px;
 }
 
 #lake {
-   position: absolute;
-   width:100%;
-   height:61%;
-   bottom: 1px;
+	position: absolute;
+	width:100%;
+	height:61%;
+	bottom: 1px;
 }
 
 #bugs {
 	position: absolute;
-   width:100%;
-   height:49%;
-   bottom: 1px;
+	width:100%;
+	height:49%;
+	bottom: 1px;
 }
 
 img {
@@ -49,18 +49,18 @@ img {
 }
 
 a.button {
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
-    text-decoration: none;
-    color: initial;
+	-webkit-appearance: button;
+	-moz-appearance: button;
+	appearance: button;
+	text-decoration: none;
+	color: initial;
 }
 
 #form {
-   position: absolute;
-   width:100%;
-   height:25%;
-   bottom: 1px;
+	position: absolute;
+	width:100%;
+	height:25%;
+	bottom: 1px;
 }
 
 #market {
@@ -92,13 +92,12 @@ a.button {
 }
 
 input.user {
-   width: 80px;
- }
+	width: 80px;
+}
 
 footer {
- position:absolute;
-   bottom:0;
-   width:100%;
-   height:40px;   /* Height of the footer */
-  }
-  </style>
+	position:absolute;
+	bottom:0;
+	width:100%;
+	height:40px;	/* Height of the footer */
+}

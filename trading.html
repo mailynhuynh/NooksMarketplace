@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title id="pageTitle"></title>
+	<script type="text/javascript">
+		// get URL parameter to get the name of the item we're trading.
+		var url_string = window.location.href;
+		var url = new URL(url_string);
+		var c = url.searchParams.get("type");
+		// replacing underscore with spaces
+		// and also capitalize each beginning letter of a word
+		function formatNicely(str) {
+			str = str.replace(/_/, " ");
+	    	return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+		}
+		c = formatNicely(c);
+		document.getElementById("pageTitle").innerHTML = c;
+	</script>
+	<link href = "css/format.css" rel = "stylesheet"  type = "text/css" />
+</head>
+<body>
+	<div id = "market">
+		<div id = "buying">
+			<h2>buying</h2>
+			
+			<div id = "display"></div>
+		</div>
+		<div id = "selling">
+			<h2>selling</h2>
+
+			<div id = "display"></div>
+		</div>
+	</div>
+
+	<div id = "form">
+		<form action="action_page.php" method="post">
+	  	ID:
+	 	<input type="text" class= "user" name="ID">
+	  	Quantity:
+	  	<input type="text" class = "user" name="quantity">
+	  	Price:
+	  	<input type= "text" class = "user" name = "price">
+	  	<input type="radio" name="type" value="buy"> Buy
+	 	<input type="radio" name="type" value="sell"> Sell
+	    <input type="submit" value="Submit">
+	  	</form>
+	</div>
+</body>
+<footer>
+	Copyright © 2017
+</footer>
+</html>
