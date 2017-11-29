@@ -5,35 +5,40 @@ $allowedItems = array("apple", "cherry", "orange", "peach", "pear", "coconut", "
 if(isset($_POST['type'])) $itemType = $_POST['type'];
 if (!in_array($itemType, $allowedItems)) {
     echo "That's not a valid item.";
+    echo "<br/><a href='".$_SERVER['HTTP_REFERER']."'>Go back</a>";
 	exit;
 }
 
 if(isset($_POST['id'])) $id = $_POST['id'];
 if(strlen($id) != 11) {
 	echo "Your ID should be 11 numbers long.";
+	echo "<br/><a href='".$_SERVER['HTTP_REFERER']."'>Go back</a>";
 	exit;
 }
 
 if(isset($_POST['quantity'])) $quantity = $_POST['quantity'];
 if($quantity > 10 || $quantity < 1) {
 	echo "You can only sell/buy a max of 10 items per order. And at least 1 item per order.";
+	echo "<br/><a href='".$_SERVER['HTTP_REFERER']."'>Go back</a>";
 	exit;
 }
 
 if(isset($_POST['price'])) $price = $_POST['price'];
 if($price < 1) {
 	echo "You can't sell/buy an item for less than 1.";
+	echo "<br/><a href='".$_SERVER['HTTP_REFERER']."'>Go back</a>";
 	exit;
 }
 
 if(isset($_POST['marketType'])) $marketType = $_POST['marketType'];
 if($marketType != "buy" && $marketType != "sell") {
 	echo "Must be a buy or sell order.";
+	echo "<br/><a href='".$_SERVER['HTTP_REFERER']."'>Go back</a>";
 	exit;
 }
-
+/*
 echo "You (" . $id . ") want to " . $marketType . " " . $quantity . " " . $itemType . " at a price of " . $price . ". That's " . ($price/$quantity) . " per " . $itemType . ".<br/>\n";
-
+*/
 if (file_exists($marketType . "/" . $itemType . ".json")) {
 	//$fh = fopen($marketType . "/" . $itemType . ".json", 'a');
 	// why append yet... we need to just get the data and then overwrite
@@ -74,5 +79,7 @@ function generateRandomString($length = 16) {
     }
     return $randomString;
 }
+
+echo "Success. <a href='".$_SERVER['HTTP_REFERER']."'>Go back</a>";
 
 ?>

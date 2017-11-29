@@ -11,7 +11,7 @@ function sellerData() {
 			}
 		}
 	};
-	xhttp.open("GET", "sell/" + originalType + ".json", true);
+	xhttp.open("GET", "sell/" + originalType + ".json?r=" + Math.random(), true);
 	xhttp.send();
 
 	buyerData();
@@ -28,6 +28,6 @@ function buyerData() {
 			}
 		}
 	};
-	xhttp.open("GET", "buy/" + originalType + ".json", true);
+	xhttp.open("GET", "buy/" + originalType + ".json?r=" + Math.random(), true);
 	xhttp.send();
 }
