@@ -1,33 +1,55 @@
-sellerData();
+$(document).ready(function() {
+// var originalType;
+// 	is set in trading.html
+	getMarketData();
 
-function sellerData() {
-	var jsonSellData;
-	var xhttp = new XMLHttpRequest();
-	xhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			jsonSellData = JSON.parse(this.responseText);
-			for(var i = 0; i < jsonSellData['market_orders'].length; i++) {
-				document.getElementById("displaySelling").innerHTML += "<tr><td>" + jsonSellData['market_orders'][i]['id']+"</td><td>"+jsonSellData['market_orders'][i]['quantity']+"</td><td>"+jsonSellData['market_orders'][i]['price']+"</td></tr>";
+	function getMarketData() {
+		$.get("sell/"+originalType+".json?r=" + Math.random(), function(data, status){
+			if(status == "success") {
+				$("#displaySelling").html("<tr><td>ID</td><td>Amount</td><td>Price</td></tr>");
+				for(var i = data['market_orders'].length - 1; i >= 0; i--) {
+					$("#displaySelling").append("<tr><td>" + data['market_orders'][i]['id']+"</td><td>"+data['market_orders'][i]['quantity']+"</td><td>"+data['market_orders'][i]['price']+"</td></tr>");
+				}
 			}
-		}
-	};
-	xhttp.open("GET", "sell/" + originalType + ".json?r=" + Math.random(), true);
-	xhttp.send();
-
-	buyerData();
-}
-
-function buyerData() {
-	var jsonBuyData;
-	var xhttp = new XMLHttpRequest();
-	xhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			jsonSellData = JSON.parse(this.responseText);
-			for(var i = 0; i < jsonSellData['market_orders'].length; i++) {
-				document.getElementById("displayBuying").innerHTML += "<tr><td>" + jsonSellData['market_orders'][i]['id']+"</td><td>"+jsonSellData['market_orders'][i]['quantity']+"</td><td>"+jsonSellData['market_orders'][i]['price']+"</td></tr>";
+			else {
+				alert("An error occured: couldn't fetch data... (" + status + ")");
 			}
-		}
-	};
-	xhttp.open("GET", "buy/" + originalType + ".json?r=" + Math.random(), true);
-	xhttp.send();
-}
+		});
+
+		$.get("buy/"+originalType+".json?r=" + Math.random(), function(data, status){
+			if(status == "success") {
+				$("#displayBuying").html("<tr><td>ID</td><td>Amount</td><td>Price</td></tr>");
+				for(var i = data['market_orders'].length - 1; i >= 0; i--) {
+					$("#displayBuying").append("<tr><td>" + data['market_orders'][i]['id']+"</td><td>"+data['market_orders'][i]['quantity']+"</td><td>"+data['market_orders'][i]['price']+"</td></tr>");
+				}
+			}
+			else {
+				alert("An error occured: couldn't fetch data... (" + status + ")");
+			}
+		});
+	}
+
+	$("#newListing").click(function() {
+		var prevId = $("#userid").val();
+		var prevType = originalType;
+		var prevQuantity = $("#quantity option:selected").val();
+		var prevPrice = $("#price").val();
+		var prevMarketType = $("input[name=marketType]:checked").val();
+		$("#price").val("");
+		$.post("action_page.php", {
+			id: prevId,
+			type: prevType,
+			quantity: prevQuantity,
+			price: prevPrice,
+			marketType: prevMarketType
+		}, function(data, status) {
+			if(!data['valid']) {
+				alert(data['error']['reason']);
+			}
+			else {
+				getMarketData();
+			}
+		});
+		
+	});
+});

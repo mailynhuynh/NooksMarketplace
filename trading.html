@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<title id="pageTitle"></title>
 	<script type="text/javascript">
 		// get URL parameter to get the name of the item we're trading.
@@ -18,6 +19,7 @@
 		niceType = formatNicely(niceType);
 		document.getElementById("pageTitle").innerHTML = niceType;
 	</script>
+	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/functions.js"></script>
 	<link href="css/format.css" rel="stylesheet"  type="text/css" />
 </head>
@@ -35,22 +37,28 @@
 
 	<div id = "form">
 		<form action="action_page.php" method="post">
-		<input type="hidden" name="type" id="formType" value="">
-	  	ID:
-	 	<input type="text" class="user" name="id">
-	  	Quantity:
-	  	<input type="text" class="user" name="quantity">
-	  	Price:
-	  	<input type="text" class="user" name="price">
-	  	<input type="radio" name="marketType" value="buy"> Buy
-	 	<input type="radio" name="marketType" value="sell"> Sell
-	    <input type="submit" value="Submit">
+			ID:
+			<input type="text" class="user" id="userid" name="userid" maxlength="11"/>
+			Quantity:
+			<select name="quantity" id="quantity">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+			</select>
+			Price:
+			<input type="text" class="user" id="price" name="price" maxlength="7"/>
+			<input type="radio" name="marketType" value="buy" checked="checked"/> Buy
+			<input type="radio" name="marketType" value="sell"/> Sell
+			<button type="button" id="newListing">Post Order</button>
 	  	</form>
 	</div>
-	<script type="text/javascript">
-		// fill out the submit form
-		document.getElementById("formType").value = originalType;
-	</script>
 </body>
 <footer>
 	Copyright © 2017
