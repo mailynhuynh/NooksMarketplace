@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+#!/usr/bin/perl
+
+my $txt = qq{<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Nook's Marketplace</title>
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <link href = "css/format.css" rel = "stylesheet"  type = "text/css" />
 </head>
 <body>
@@ -45,4 +46,12 @@
 <footer>
 	Copyright © 2017
 </footer>
-</html>
+</html>};
+
+my @lines = split(/\n/, $txt);
+my $prev;
+foreach my $line (@lines) {
+	$line =~ /<a href = "trading\.html\?type=([a-zA-Z0-9_]+)/;
+	print "\"".$1."\", " unless $1 eq $prev;
+	$prev = $1;
+}

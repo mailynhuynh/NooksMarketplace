@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<title id="pageTitle"></title>
+	<script type="text/javascript">
+		// get URL parameter to get the name of the item we're trading.
+		var url_string = window.location.href;
+		var url = new URL(url_string);
+		var niceType = url.searchParams.get("type");
+		var originalType = niceType;
+		// replacing underscore with spaces
+		// and also capitalize each beginning letter of a word
+		function formatNicely(str) {
+			str = str.replace(/_/, " ");
+	    	return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+		}
+		niceType = formatNicely(niceType);
+		document.getElementById("pageTitle").innerHTML = niceType;
+	</script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/functions.js"></script>
+	<link href="css/format.css" rel="stylesheet"  type="text/css" />
+</head>
+<body>
+	<div id="market">
+		<div id="buying">
+			<h2>Buying</h2>
+			<div class="display"><table style="width:100%;" id="displayBuying"><tr><td>ID</td><td>Amount</td><td>Price</td></tr></table></div>
+		</div>
+		<div id="selling">
+			<h2>Selling</h2>
+			<div class="display"><table style="width:100%;" id="displaySelling"><tr><td>ID</td><td>Amount</td><td>Price</td></tr></table></div>
+		</div>
+	</div>
+
+	<div id = "form">
+		<form action="action_page.php" method="post">
+			ID:
+			<input type="text" class="user" id="userid" name="userid" maxlength="11"/>
+			Quantity:
+			<select name="quantity" id="quantity">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+			</select>
+			Price:
+			<input type="text" class="user" id="price" name="price" maxlength="7"/>
+			<input type="radio" name="marketType" value="buy" checked="checked"/> Buy
+			<input type="radio" name="marketType" value="sell"/> Sell
+			<button type="button" id="newListing">Post Order</button>
+	  	</form>
+	</div>
+</body>
+<footer>
+	Copyright © 2017
+</footer>
+</html>
